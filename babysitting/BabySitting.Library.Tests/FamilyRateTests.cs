@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 
 namespace BabySitting.Tests
@@ -54,6 +55,23 @@ namespace BabySitting.Tests
             Assert.Pass();
         }
 
-
+        [Test]
+        public void SetHourlyRates_Hours0To24_InvalidInput_ThrowError()
+        {
+            FamilyRate testFamily = new FamilyRate();
+            try
+            {
+                testFamily.SetHourlyRates(0, 24, 20);
+                Assert.Fail("An exception should have been thrown.");
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                Assert.Pass();
+            }
+            catch (Exception)
+            {
+                Assert.Fail("An exception of type 'ArgumentOutOfRangeException' was expected.");
+            }
+        }
     }
 }
